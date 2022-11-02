@@ -1,0 +1,123 @@
+Last login: Wed Nov  2 12:02:22 on ttys000
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+MacBook-Pro:~ gkopevski$ cd ~/.ssh/
+MacBook-Pro:.ssh gkopevski$ chmod 400 Udacity01NC.pem
+MacBook-Pro:.ssh gkopevski$ ssh -i "Udacity01NC.pem" ec2-user@ec2-13-57-206-83.us-west-1.compute.amazonaws.com
+The authenticity of host 'ec2-13-57-206-83.us-west-1.compute.amazonaws.com (13.57.206.83)' can't be established.
+ED25519 key fingerprint is SHA256:zIOAHYP6t9+AxewLWXdiWgqkCrfD7biQB763Nvj3uzg.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-13-57-206-83.us-west-1.compute.amazonaws.com' (ED25519) to the list of known hosts.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+13 package(s) needed for security, out of 16 available
+Run "sudo yum update" to apply all updates.
+-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
+[ec2-user@ip-10-2-11-90 ~]$ sudo -su
+sudo: option requires an argument -- 'u'
+usage: sudo -h | -K | -k | -V
+usage: sudo -v [-AknS] [-g group] [-h host] [-p prompt] [-u user]
+usage: sudo -l [-AknS] [-g group] [-h host] [-p prompt] [-U user] [-u user] [command]
+usage: sudo [-AbEHknPS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] [VAR=value] [-i|-s] [<command>]
+usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
+[ec2-user@ip-10-2-11-90 ~]$ sudo su
+[root@ip-10-2-11-90 ec2-user]# yum install mysql
+Failed to set locale, defaulting to C
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb.x86_64 1:5.5.68-1.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==========================================================================================================================================================
+ Package                           Arch                             Version                                    Repository                            Size
+==========================================================================================================================================================
+Installing:
+ mariadb                           x86_64                           1:5.5.68-1.amzn2                           amzn2-core                           8.8 M
+
+Transaction Summary
+==========================================================================================================================================================
+Install  1 Package
+
+Total download size: 8.8 M
+Installed size: 49 M
+Is this ok [y/d/N]: y
+Downloading packages:
+mariadb-5.5.68-1.amzn2.x86_64.rpm                                                                                                  | 8.8 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:mariadb-5.5.68-1.amzn2.x86_64                                                                                                        1/1 
+  Verifying  : 1:mariadb-5.5.68-1.amzn2.x86_64                                                                                                        1/1 
+
+Installed:
+  mariadb.x86_64 1:5.5.68-1.amzn2                                                                                                                         
+
+Complete!
+[root@ip-10-2-11-90 ec2-user]# 
+[root@ip-10-2-11-90 ec2-user]# exit
+exit
+[ec2-user@ip-10-2-11-90 ~]$ my
+my_print_defaults  mysqlaccess        mysqlbinlog        mysqldump          mysqlimport        mysqlslap          
+mysql              mysqladmin         mysqlcheck         mysql_find_rows    mysqlshow          mysql_waitpid      
+[ec2-user@ip-10-2-11-90 ~]$ my
+my_print_defaults  mysqlaccess        mysqlbinlog        mysqldump          mysqlimport        mysqlslap          
+mysql              mysqladmin         mysqlcheck         mysql_find_rows    mysqlshow          mysql_waitpid      
+[ec2-user@ip-10-2-11-90 ~]$ my
+my_print_defaults  mysqlaccess        mysqlbinlog        mysqldump          mysqlimport        mysqlslap          
+mysql              mysqladmin         mysqlcheck         mysql_find_rows    mysqlshow          mysql_waitpid      
+[ec2-user@ip-10-2-11-90 ~]$ mysql -h udacity01replica.cqp4e0sdf7pv.us-west-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 44
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| movies             |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+MySQL [(none)]> use movies;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [movies]> SELECT * FROM movies;
++--------+------------------------+---------------+--------------+
+| title  | genre                  | director      | release_year |
++--------+------------------------+---------------+--------------+
+| Joker  | psychological thriller | Todd Phillips |         2019 |
+| Joker1 | psychological thriller | Todd Phillips |         2019 |
++--------+------------------------+---------------+--------------+
+2 rows in set (0.00 sec)
+
+MySQL [movies]> INSERT INTO movies VALUE ("Batman", "psychological thriller", "Todd Phillips", 2019);
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+MySQL [movies]> Ctrl-C -- exit!
+Aborted
+[ec2-user@ip-10-2-11-90 ~]$ ^C
+[ec2-user@ip-10-2-11-90 ~]$ exit
+logout
+Connection to ec2-13-57-206-83.us-west-1.compute.amazonaws.com closed.
+MacBook-Pro:.ssh gkopevski$ 

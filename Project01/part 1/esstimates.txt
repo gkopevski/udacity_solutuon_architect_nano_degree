@@ -1,0 +1,26 @@
+
+Minimum RTO for a single AZ outage
+In case there is an outage in one AZ in the primary region(us-east-1) the DB will continue to work without any problem since the other AZ will take over.
+This is because there is a standby replica ready to take over in case there is a failure where the primary DB is running.
+Based on AWS documentation this depends on ongoing transactions and recovery it is safe to assume that typically can be around 1-2 minutes.
+But this can be take longer as well.
+
+
+Minimum RTO for a single region outage
+In case there is a whole region outage there should be a promotion of the read replica to master. Now this is tricky and lets assume
+this is super important DB which is storing some very important data in it. This means we will need to have a support team 24/7. That means
+when the issue is detected the person who will monitor will login to the AWS CLI and promote the db. This can take around 10-20 minutes time.
+This also means that we will need to update the applications that are connecting to the DB to change their connection strings.
+Adding this into consideration it can take around 20-30 minutes for RTO.
+
+
+Minimum RPO for a single AZ outage
+Because we have multi AZ DB in case of single AZ outage, the other AZ will take over thus leading to no data loss. 0 mins
+
+Minimum RPO for a single region outage
+Because we have a read replica in another region and it is only read replica there will be data loss. This means that we will need
+to promote read replica to master and change all connection strings that use the DB to point
+For business and users this means that the users will be able to use the DB and get data from it but writes will not be possible until
+the read replica becomes master and the connection strings are updated so new transactions can come in. In case everything is automated
+in CF scripts assumption is that around 15-30 minutes will take in order to promote to master the replica and the apps/services that
+are using the DB change the connection strings.

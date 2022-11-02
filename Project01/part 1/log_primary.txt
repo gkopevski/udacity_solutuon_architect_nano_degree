@@ -1,0 +1,87 @@
+Last login: Fri Oct 28 08:46:25 on ttys000
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+MacBook-Pro:~ gkopevski$ ssh -i "udacity01.pem" ec2-user@ec2-107-20-112-3.compute-1.amazonaws.com
+Warning: Identity file udacity01.pem not accessible: No such file or directory.
+Last login: Wed Nov  2 09:55:31 2022 from dslb-188-101-149-126.188.101.pools.vodafone-ip.de
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+13 package(s) needed for security, out of 16 available
+Run "sudo yum update" to apply all updates.
+-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
+[ec2-user@ip-10-1-10-46 ~]$  mysql -u admin -P 3306 -h udacity01master.cjf0mnxkk7sq.us-east-1.rds.amazonaws.com -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 45
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+MySQL [(none)]> CREATE DATABASE movies;
+Query OK, 1 row affected (0.08 sec)
+
+MySQL [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| movies             |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+MySQL [(none)]> USE movies;
+Database changed
+MySQL [movies]> CREATE TABLE movies(title VARCHAR(50) NOT NULL,genre VARCHAR(30) NOT NULL,director VARCHAR(60) NOT NULL,release_year INT NOT NULL,PRIMARY KEY(title));
+Query OK, 0 rows affected (0.08 sec)
+
+MySQL [movies]> DESCRIBE movies;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| title        | varchar(50) | NO   | PRI | NULL    |       |
+| genre        | varchar(30) | NO   |     | NULL    |       |
+| director     | varchar(60) | NO   |     | NULL    |       |
+| release_year | int         | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+MySQL [movies]> INSERT INTO movies VALUE ("Joker", "psychological thriller", "Todd Phillips", 2019);
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [movies]> SELECT * FROM movies;
++-------+------------------------+---------------+--------------+
+| title | genre                  | director      | release_year |
++-------+------------------------+---------------+--------------+
+| Joker | psychological thriller | Todd Phillips |         2019 |
++-------+------------------------+---------------+--------------+
+1 row in set (0.00 sec)
+
+MySQL [movies]> Ctrl-C -- exit!
+Aborted
+[ec2-user@ip-10-1-10-46 ~]$ ^C
+[ec2-user@ip-10-1-10-46 ~]$ exit
+logout
+Connection to ec2-107-20-112-3.compute-1.amazonaws.com closed.
+MacBook-Pro:~ gkopevski$ 
