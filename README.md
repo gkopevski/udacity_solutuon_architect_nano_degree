@@ -7,4 +7,8 @@ Repo navigation:
 		- part 1 (Part 1: Data Durability And Recovery)
 		- part 2 (Part 2: Failover And Recovery)
 		- part 3 (Part 3: Web Resiliency)
+
+- Project02 (Design for Performance and Scalability)
+		- task 1
+
 </pre>
