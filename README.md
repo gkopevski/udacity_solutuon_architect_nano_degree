@@ -10,4 +10,9 @@ Repo navigation:
 
 - Project02 (Design for Performance and Scalability)
 		- task 1
+        - task 2
+        - task 5
+            - part 1
+            - part 2
+        - task 6
 </pre>
