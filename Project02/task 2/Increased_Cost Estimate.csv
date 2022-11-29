@@ -1,0 +1,30 @@
+﻿Estimate summary
+Upfront cost,Monthly cost,Total 12 months cost,Currency
+0,18265.04,219180.48,USD
+,,* Includes upfront cost
+
+
+Detailed Estimate
+Group hierarchy,Region,Description,Service,Upfront,Monthly,First 12 months total,Currency,Configuration summary
+My Estimate,US East (N. Virginia),,Amazon Route 53,0,628,7536.00,USD,"Hosted Zones (2), Basic Checks Within AWS (200)"
+My Estimate,US East (N. Virginia),,Amazon CloudFront,0,2057.2,24686.40,USD,"Data transfer out to internet (20000 GB per month), Data transfer out to origin (20000 GB per month), Number of requests (HTTPS) (5999999 per month)"
+My Estimate,US East (N. Virginia),s3 media storage,S3 Standard,0,1811.2,21734.40,USD,S3 Standard storage (80000 GB per month)
+My Estimate,US East (N. Virginia),application and network load balancers,Application Load Balancer,0,28.11,337.32,USD,Number of Application Load Balancers (1)
+My Estimate,US East (N. Virginia),application and network load balancers,Network Load Balancer,0,50.370000000000005,604.44,USD,"Number of Network Load Balancers (2), Processed bytes per NLB for TCP (2 GB per hour), Average number of new TCP connections (100 per second), Average TCP connection duration (5 seconds)"
+My Estimate,US East (N. Virginia),nat gateways,Network Address Translation (NAT) Gateway,0,605.7,7268.40,USD,Number of NAT Gateways (2)
+My Estimate,US East (N. Virginia),application servers,Amazon EC2,0,2281.38,27376.56,USD,"Operating system (Linux), Quantity (8), Pricing strategy (EC2 Instance Savings Plans 1 Year No UpFront), Storage amount (31 GB), Instance type (m6g.4xlarge)"
+My Estimate,US East (N. Virginia),web servers,Amazon EC2,0,1155.66,13867.92,USD,"Operating system (Linux), Quantity (6), Pricing strategy (EC2 Instance Savings Plans 1 Year No UpFront), Storage amount (50 GB), Instance type (a1.metal)"
+My Estimate,US East (N. Virginia),master and replica,Amazon Aurora MySQL-Compatible,0,3142.96,37715.52,USD,"Change records per statement (0.38), Instance Type (db.r3.2xlarge), Nodes (2), Utilization (100 %Utilized/Month), Instance Family (Memory optimized), Pricing Model (OnDemand), Storage amount (10000 GB), Total Size of Backup Processed for Export (GB) (20000 per month)"
+My Estimate,US East (N. Virginia),,AWS Web Application Firewall (WAF),0,1515,18180.00,USD,"Number of Web Access Control Lists (Web ACLs) utilized (3 per month), Number of Rules added per Web ACL (500 per month)"
+My Estimate,US East (N. Virginia),,Amazon Simple Queue Service (SQS),0,399.6,4795.20,USD,"DT Inbound: All other regions (0 TB per month), DT Outbound: Amazon CloudFront (0 TB per month), Standard queue requests (1000 million per month)"
+My Estimate,US East (Ohio),,Amazon Aurora MySQL-Compatible,0,934.4,11212.80,USD,"Change records per statement (0.38), Instance Type (db.r3.2xlarge), Nodes (1), Utilization (100 %Utilized/Month), Instance Family (Memory optimized), Pricing Model (OnDemand)"
+My Estimate,US East (Ohio),another region stand by ec2 instances for application servers,Amazon EC2,0,1906.1,22873.20,USD,"Operating system (Linux), Quantity (10), Pricing strategy (EC2 Instance Savings Plans 1 Year No UpFront), Storage amount (30 GB), Instance type (a1.4xlarge)"
+My Estimate,US East (Ohio),another region stand by ec2 instances for web servers,Amazon EC2,0,1143.66,13723.92,USD,"Operating system (Linux), Quantity (6), Pricing strategy (EC2 Instance Savings Plans 1 Year No UpFront), Storage amount (30 GB), Instance type (a1.4xlarge)"
+My Estimate,US East (Ohio),,Network Address Translation (NAT) Gateway,0,605.7,7268.40,USD,Number of NAT Gateways (2)
+
+Note Goran Kopevski: Since we have a lot of spare money these are the things which I increased will make:Have the whole infrastrcture in another region ready for worst case disaster recovery scenario. The sizes and amount of the instances do not need to be as large as in our primary region. For security will add WAF for our most crucial endpoints. Will add SQS between the web and application servers.
+Will add Xray to monitor the data.In primary region will increase the size of the instances for all (web/application/rds).
+Will increase the s3 since we are going big!
+
+Acknowledgement
+"* AWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services."
