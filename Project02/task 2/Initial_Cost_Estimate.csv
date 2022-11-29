@@ -1,0 +1,24 @@
+﻿Estimate summary
+Upfront cost,Monthly cost,Total 12 months cost,Currency
+0,8319.030000000002,99828.36,USD
+,,* Includes upfront cost
+
+
+Detailed Estimate
+Group hierarchy,Region,Description,Service,Upfront,Monthly,First 12 months total,Currency,Configuration summary
+My Estimate,US East (N. Virginia),,Amazon Route 53,0,628,7536.00,USD,"Hosted Zones (2), Basic Checks Within AWS (200)"
+My Estimate,US East (N. Virginia),,Amazon CloudFront,0,2557.2,30686.40,USD,"Data transfer out to internet (25000 GB per month), Data transfer out to origin (25000 GB per month), Number of requests (HTTPS) (5999999 per month)"
+My Estimate,US East (N. Virginia),s3 media storage,S3 Standard,0,1371.2,16454.40,USD,S3 Standard storage (60000 GB per month)
+My Estimate,US East (N. Virginia),s3 media storage,S3 Intelligent - Tiering,0,551.9,6622.80,USD,"S3 INT Average Object Size (16 MB), S3 INT storage (45000 GB per month)"
+My Estimate,US East (N. Virginia),s3 media storage,Data Transfer,0,0,0.00,USD,"DT Inbound: Internet (200000 TB per month), DT Outbound: Amazon CloudFront (200000 TB per month)"
+My Estimate,US East (N. Virginia),application and network load balancers,Application Load Balancer,0,22.27,267.24,USD,Number of Application Load Balancers (1)
+My Estimate,US East (N. Virginia),application and network load balancers,Network Load Balancer,0,41.61,499.32,USD,"Number of Network Load Balancers (2), Processed bytes per NLB for TCP (1 GB per hour), Average number of new TCP connections (100 per second), Average TCP connection duration (5 seconds)"
+My Estimate,US East (N. Virginia),nat gateways,Network Address Translation (NAT) Gateway,0,71.1,853.20,USD,Number of NAT Gateways (2)
+My Estimate,US East (N. Virginia),application servers,Amazon EC2,0,504.31,6051.72,USD,"Operating system (Linux), Quantity (4), Pricing strategy (EC2 Instance Savings Plans 1 Year No UpFront), Storage amount (30 GB), Instance type (t4g.2xlarge)"
+My Estimate,US East (N. Virginia),web servers,Amazon EC2,0,395.22,4742.64,USD,"Operating system (Linux), Quantity (4), Pricing strategy (EC2 Instance Savings Plans 1 Year No UpFront), Storage amount (50 GB), Instance type (a1.2xlarge)"
+My Estimate,US East (N. Virginia),master and replica,Amazon Aurora MySQL-Compatible,0,2176.2200000000003,26114.64,USD,"Change records per statement (0.38), Instance Type (db.r3.2xlarge), Nodes (2), Utilization (100 %Utilized/Month), Instance Family (Memory optimized), Pricing Model (OnDemand), Storage amount (1000 GB), Total Size of Backup Processed for Export (GB) (20000 per month)"
+
+
+
+Acknowledgement
+"* AWS Pricing Calculator provides only an estimate of your AWS fees and doesn't include any taxes that might apply. Your actual fees depend on a variety of factors, including your actual usage of AWS services."
