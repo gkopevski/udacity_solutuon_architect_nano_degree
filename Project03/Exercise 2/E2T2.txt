@@ -1,0 +1,11 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+Ensure no security groups allow ingress from 0.0.0.0/0 to port 22
+Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389
+Ensure the default security group of every VPC restricts all traffic
+Ensure CloudTrail is enabled in all regions
+Ensure VPC flow logging is enabled in all VPCs
+
+
+https://us-east-1.console.aws.amazon.com/securityhub/home?region=us-east-1#/standards/cis-aws-foundations-benchmark-1.2.0
+

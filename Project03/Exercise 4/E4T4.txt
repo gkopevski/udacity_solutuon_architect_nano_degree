@@ -1,0 +1,11 @@
+# What additional architectural change can be made to reduce the internet facing attack surface of the web application instance.
+- Enable WAF. If needed direct access, enable only access to the EC2 instance via Session Manager. Remove any additional access.
+
+# Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket.
+- No, since those IAM permissions will still have access to the S3 bucket. Only thing that will be changed is that it will be is that access will stay within AWS network and do not go over the internet.
+
+# Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+- No, we will need to manually make a batch job to encrypt the objects.
+
+# What would happen if the original cloud formation templates are applied to this environment.
+- If we execute with same command it will fail (already exists).

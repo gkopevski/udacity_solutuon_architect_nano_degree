@@ -1,0 +1,10 @@
+# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+1. Do not allow SSH login, allow only with Session Manager
+2. Change the CIDR blocks from 0.0.0.0/0 to something more specific (who can only access through SSH if it is needed)
+3. If we really must have ssh with password, make the attackers life a bit harder by adding crazy things in the password
+
+
+# Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+1. First server side encryption. Even if they get access not to be able freely to read the data.
+1.1. Consider even client side encryption.
+2.  Restrict access to your resources to the people that absolutely need it. Enable only specific IP adresses to access the bucket, in our case these ip addresses should not have access to the s3. (least privilege).

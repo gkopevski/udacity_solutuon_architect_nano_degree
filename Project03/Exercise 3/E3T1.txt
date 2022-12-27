@@ -1,0 +1,25 @@
+# Describe GuardDuty findings that were detected related to the brute force attack
+
+i-0d2a9bb70812e193d is performing SSH brute force attacks against 10.192.10.20. Brute force attacks are used to gain unauthorized access to your instance by guessing the SSH password.
+This is considered as HIGH threat since "our" EC2 instance is being used for the attack.
+
+10.192.11.196 is performing SSH brute force attacks against i-0ce659e316022e2ba. Brute force attacks are used to gain unauthorized access to your instance by guessing the SSH password.
+This is considered as LOW threat since our EC2 instance is under attack.
+
+
+In both of the cases: This finding informs you that an EC2 instance in your AWS environment was involved in a brute force attack aimed at obtaining passwords to SSH services on Linux-based systems. This can indicate unauthorized access to your AWS resources.
+                      Note: This finding is generated only through monitoring traffic on port 22. If your SSH services are configured to use other ports, this finding is not generated.
+
+
+
+
+# Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+
+Source: https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html
+"Amazon GuardDuty is a security monitoring service that analyzes and processes data sources, such as AWS CloudTrail data events for Amazon S3 logs, CloudTrail management event logs, DNS logs, Amazon EBS volume data, Kubernetes audit logs, Amazon VPC flow logs, and RDS login activity. It uses threat intelligence feeds, such as lists of malicious IP addresses and domains, and machine learning to identify unexpected, potentially unauthorized, and malicious activity within your AWS environment. This can include issues like escalation of privileges, use of exposed credentials, or communication with malicious IP addresses, domains, presence of malware on your Amazon EC2 instances and container workloads, or discovery of unusual patterns of login events on your database. For example, GuardDuty can detect compromised EC2 instances and container workloads serving malware, or mining bitcoin. It also monitors AWS account access behavior for signs of compromise, such as unauthorized infrastructure deployments, like instances deployed in a Region that hasn't been used before, or unusual API calls like a password policy change to reduce password strength."
+
+Source: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_vpc
+"The VPC Flow Logs feature of Amazon VPC captures information about the IP traffic going to and from network interfaces within your environment.
+When you enable GuardDuty, it immediately starts analyzing your VPC flow logs data. It consumes VPC flow log events directly from the VPC Flow Logs feature through an independent and duplicative stream of flow logs. This process does not affect any existing flow log configurations that you might have."
+
+In our case it shows that from monitoring the trafic though our VPC  AWS Guard Duty has idenitfied that we had one instance inside our VPC doing attack against another EC2 in our VPC.

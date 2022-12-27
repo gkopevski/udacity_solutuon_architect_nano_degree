@@ -1,0 +1,18 @@
+Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
+
+# Poor practice 1
+- We need to add extra policies on who can access the s3 bucket. I would attach those policies to the EC2 instance that is only allowed to access the s3 bucket.
+In the current scenario, they all have full access to s3 and I would reduce to have the roles only that are needed. In this case, read.
+But since the Attack instance has stolen API credentials they will be able to attach the policies they want to the attacker EC2 instance.
+What I will do on top is to restrict access to the s3 bucket only from the EC2 IP addresses (least privilege principle)
+
+# Poor practice 2
+- I would put the s3 not to be facing the public through the internet gateway. I would put the s3 buckets in the VPC.
+ This way we allow our recipes to be out in public. The only way to access the bucket will be through the application and not directly the bucket.
+
+# Poor practice 3
+- All of the Security groups in the yml file have CidrIp: 0.0.0.0/0 for inbound/outbound traffic, thus leaving any IP address to have access to the s3 bucket.
+
+# Poor practice 4
+- ALB using port 80. It should be always 443(https) when we try to access anything behind it. 80(http) is not secure.
+

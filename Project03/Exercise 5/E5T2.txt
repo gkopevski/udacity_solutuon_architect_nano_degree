@@ -1,0 +1,12 @@
+a. Scan infrastructure as code templates.
+I would use SonarQube. It has out of the box easy way to integrate with AWS. Can scan for stupidity in code, code improvements, improvement of code quality as well.
+Example: Hard coded API key to access production AppSync.
+
+b. Scan AMI’s or containers for OS vulnerabilities.
+For me personally this is new area. From a couple of articles that I saw I would choose Anchore. It has integration with AWS codepipeline and will check if there are any vulnerabilities to the container that I want to deploy.
+Example: old version of log4j used and huge security breach in it.
+
+c. Scan an AWS environment for cloud configuration vulnerabilities.
+This is also new field for me. I would use Regula since I saw it in the excercises and I liked the approach. This tool will allow me to evaluate infrastructure as code files for potential AWS, Azure, Google Cloud, and Kubernetes security and compliance violations prior to deployment.
+Example: Will tell me that I have used "*:*" administrative privileges for some policy which is against everything that this course taught me.
+
